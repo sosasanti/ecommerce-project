@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link"
 
 const links = [
@@ -22,6 +24,8 @@ const links = [
 
 export function DashboardNavigation() {
 
+    console.log("DashboardNavigation renderizado");
+
     return (
         <>
             {links.map((link) => (
@@ -30,6 +34,4 @@ export function DashboardNavigation() {
         </>
 
     )
-
-
 }
