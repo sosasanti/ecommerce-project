@@ -1,9 +1,9 @@
+import { Hero } from "../components/storefront/Hero";
+
 export default function IndexPage() {
     return (
-        <h1>
-            <div>
-                Hello
-            </div>
-        </h1>
+        <div>
+            <Hero />
+        </div>
     );
 }
