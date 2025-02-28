@@ -11,7 +11,7 @@ import { ChevronLeft, XIcon } from "lucide-react";
 import Link from "next/link";
 import { UploadDropzone } from "@/app/lib/uploadthing";
 import { useFormState } from "react-dom";
-import { createProduct } from "@/app/actions";
+import { createProduct, editProduct } from "@/app/actions";
 import { useForm } from '@conform-to/react';
 import { parseWithZod } from "@conform-to/zod";
 import { productSchema } from "@/app/lib/zodSchemas";
@@ -37,7 +37,7 @@ interface iAppProps {
 export function EditForm({ data }: iAppProps){
 
         const [images, setImages] = useState<string[]>(data.images);
-        const [lastResult, action] = useFormState(createProduct, undefined);
+        const [lastResult, action] = useFormState(editProduct, undefined);
         const [form, fields] = useForm({
             lastResult,
     
@@ -57,19 +57,20 @@ export function EditForm({ data }: iAppProps){
 
     return (
         <form id={form.id} onSubmit={form.onSubmit} action={action}>
+                <Input type="hidden" name="productId" value={data.id} />
             <div className="flex items-center gap-4">
                 <Button variant="outline" size="icon" asChild>
                     <Link href="/dashboard/products">
                         <ChevronLeft className="w-4 h-4"/>
                     </Link>
                 </Button>
-                <h1 className="text-xl font-semibold tracking-tight">New product</h1>
+                <h1 className="text-xl font-semibold tracking-tight">Edit product</h1>
             </div>
 
             <Card className="mt-5">
                 <CardHeader>
                     <CardTitle>Product Details</CardTitle>
-                    <CardDescription>In this form you can create your products</CardDescription>
+                    <CardDescription>In this form you can update your products</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <div className="flex flex-col gap-6">
@@ -99,7 +100,7 @@ export function EditForm({ data }: iAppProps){
 
                         <div className="flex flex-col gap-3">
                             <Label>Featured product</Label>
-                            <Switch key={fields.isFeatured.key} name={fields.isFeatured.name} checked={data.isFeatured}/>
+                            <Switch key={fields.isFeatured.key} name={fields.isFeatured.name} defaultChecked={data.isFeatured}/>
                             <p className="text-red-500">
                                 {fields.isFeatured.errors}
                             </p>
@@ -181,7 +182,7 @@ export function EditForm({ data }: iAppProps){
                     </div>
                 </CardContent>
                 <CardFooter>
-                    <SubmitButton />
+                    <SubmitButton text="Edit product" />
                 </CardFooter>
             </Card>
         </form>
