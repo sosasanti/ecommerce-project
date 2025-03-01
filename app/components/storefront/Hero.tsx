@@ -1,5 +1,5 @@
 import prisma from "@/app/lib/db";
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Image from 'next/image';
 
 async function getData(){
@@ -32,6 +32,8 @@ export async function Hero(){
                     </CarouselItem>
                 ))};
             </CarouselContent>
+            <CarouselPrevious className="ml-16"/>
+            <CarouselNext className="mr-16"/>
         </Carousel>
     );
 }
