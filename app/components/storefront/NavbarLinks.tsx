@@ -1,4 +1,6 @@
+'use client';
 import Link from "next/link"
+import { useParams, usePathname } from "next/navigation"
 
 export const navbarLinks = [
     {
@@ -24,10 +26,16 @@ export const navbarLinks = [
 ]
 
 export function NavbarLinks(){
+
+    const location = usePathname();
+    console.log("current page",location);
+
     return (
         <div className="hidden md:flex justify-center items-center gap-x-4 ml-8 font-medium">
             {navbarLinks.map((item)=>(
-                <Link href={item.href} key={item.id}>
+                <Link href={item.href} key={item.id} 
+                    className={`group p-2 font-medium rounded-md ${location === item.href ? 'bg-muted' : 'hover:bg-muted hover:bg-opacity-75'}`}
+                >                    
                     {item.name}
                 </Link>
             ))}
