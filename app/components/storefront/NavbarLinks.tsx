@@ -33,7 +33,6 @@ export const navbarLinks = [
 export function NavbarLinks(){
 
     const location = usePathname();
-    console.log("current page",location);
 
     return (
         <div className="hidden md:flex justify-center items-center gap-x-4 ml-8 font-medium">
