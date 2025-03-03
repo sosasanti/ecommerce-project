@@ -105,8 +105,6 @@ export async function deleteProduct(formData: FormData) {
 }
 
 
-
-
 export async function createBanner(prevState:any, formData: FormData){
     const { getUser } = getKindeServerSession();
     const user = await getUser();
@@ -221,5 +219,29 @@ export async function addItem(productId: string){
 
     await redis.set(`cart-${user.id}`,myCart);
     revalidatePath("/","layout");
+
+}
+
+export async function deleteItem(formData: FormData){
+    const { getUser } = getKindeServerSession();
+    const user = await getUser();
+
+    if (!user){
+        return redirect("/");
+    }
+
+    const productId = formData.get('productId');
+
+    let cart: Cart | null = await redis.get(`cart-${user.id}`);
+
+    if (cart && cart.items){
+        const updateCart: Cart = {
+            userId: user.id,
+            items: cart.items.filter((item)=> item.id !== productId ),
+        };
+
+        await redis.set(`cart-${user.id}`, updateCart);
+        revalidatePath('/bag');
+    }
 
 }
