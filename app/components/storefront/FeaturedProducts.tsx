@@ -5,7 +5,8 @@ import { ProductCard } from "./ProductCard";
 async function getData() {
     const data = await prisma.product.findMany({
         where: {
-            status:'published'
+            status:'published',
+            isFeatured:true,
         },
         select: {
             id: true,
@@ -17,6 +18,7 @@ async function getData() {
         orderBy: {
             createdAt:'desc',
         },
+        take: 3,
     })
 
     return data;

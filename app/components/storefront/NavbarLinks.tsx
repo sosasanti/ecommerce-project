@@ -1,6 +1,6 @@
 'use client';
 import Link from "next/link"
-import { useParams, usePathname } from "next/navigation"
+import { usePathname } from "next/navigation"
 
 export const navbarLinks = [
     {
@@ -22,7 +22,12 @@ export const navbarLinks = [
         id:3,
         name:"Women",
         href:"/products/women"
-    }
+    },
+    {
+        id:4,
+        name:"Kids",
+        href:'/products/kids'
+    },
 ]
 
 export function NavbarLinks(){
