@@ -5,8 +5,8 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { deleteItem } from "@/app/actions";
-import { DeleteItem } from "@/app/components/SubmitButtons";
+import { checkOut, deleteItem } from "@/app/actions";
+import { CheckoutButton, DeleteItem } from "@/app/components/SubmitButtons";
 import { ShoppingBagIcon  } from "lucide-react";
 import Link from "next/link";
 
@@ -29,7 +29,7 @@ export default async function BagRoute() {
 
     return (
         <div className="max-w-2xl mx-auto mt-10 min-h-[55vh]">
-            {cart?.items.length === 0 ? (
+            {!cart || !cart.items ? (
                 <div className="flex min-h-[400px] flex-col items-center justify-center rounded-lg border border-dashed p-8 text-center mt-20">
                     <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary/10">
                         <ShoppingBagIcon className="w-10 h-10 text-primary"/>
@@ -71,10 +71,10 @@ export default async function BagRoute() {
                             <p>Subtotal:</p>
                             <p>${new Intl.NumberFormat('en-US').format(totalPrice)}</p>
                         </div>
+                        <form action={checkOut}>
+                            <CheckoutButton />
+                        </form>
 
-                        <Button size="lg" className="w-full mt-5">
-                            Checkout
-                        </Button>
                    </div> 
 
                 </div>

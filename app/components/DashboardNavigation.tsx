@@ -28,9 +28,6 @@ export function DashboardNavigation() {
 
     const pathname = usePathname();
 
-    console.log("DashboardNavigation renderizado");
-
-
     return (
         <>
             {links.map((link) => (
