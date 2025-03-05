@@ -1,10 +1,41 @@
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { DashboardStats } from "../components/dashboard/DashboardStats";
 import DashboardRecentSales from "../components/dashboard/DashboardRecentSales";
 import { Chart } from "../components/dashboard/Chart";
+import prisma from "../lib/db";
 
-export default function Dashboard() {
+async function getData(){
+
+    const now = new Date();
+    const sevenDaysAgo = new Date();
+    sevenDaysAgo.setDate(now.getDate()-7);
+
+    const data = await prisma.order.findMany({
+        where:{
+            createdAt: {
+                gte: sevenDaysAgo
+            },
+        },
+        select:{
+            amount:true,
+            createdAt:true,
+        },
+        orderBy:{
+            createdAt:'asc',
+        }
+    });
+
+    const result = data.map((item)=>({
+        date: new Intl.DateTimeFormat('en-US').format(item.createdAt),
+        revenue: item.amount / 100,
+    }));
+
+    return result;
+}
+
+export default async function Dashboard() {
+
+    const data = await getData();
 
     return(
         <>
@@ -16,7 +47,7 @@ export default function Dashboard() {
                         <CardDescription>Recent transactions from the store</CardDescription>
                     </CardHeader>
                     <CardContent>
-                        <Chart />
+                        <Chart data={data}/>
                     </CardContent>
                 </Card>
                <DashboardRecentSales />
