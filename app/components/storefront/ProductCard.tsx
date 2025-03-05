@@ -34,7 +34,7 @@ export function ProductCard({item}:iAppProps) {
                 <h1 className="text-xl font-semibold">{item.name}</h1>
                 <h3 className="inline-flex items-center rounded-md bg-primary/10 px-2 py-01 text-xs font-medium text-primary ring-inset ring-primary/10">${item.price}</h3>
             </div>
-            <p className="text-gray-600 text-sm mt-2 line-clamp-2">{item.description}</p>
+            <p className="text-gray-600 text-sm mt-2 line-clamp-2 ">{item.description}</p>
             <Link href={`/product/${item.id}`} passHref>
                 <Button className="w-full mt-5">
                     Learn more

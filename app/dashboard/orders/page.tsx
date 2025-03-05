@@ -30,7 +30,6 @@ export default async function OrdersPage() {
 
     const orders = await getData();
 
-    console.log("orderdata",orders[0].user);
     return (
         <Card>
             <CardHeader className="px-7">

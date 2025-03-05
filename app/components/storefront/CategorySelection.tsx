@@ -10,9 +10,9 @@ export function CategoriesSelection(){
                     Browse all products &rarr;
                 </Link>
             </div>
-            <div className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:grid-rows-2 sm:gap-x-6 lg:gap-8">
-                <div className="group aspect-w-2 aspect-h-1 rounded-xl overflow-hidden sm:aspect-w-1 sm:row-span-2">
-                    <Image src={"/all.jpeg"} alt={"All products image"} className="object-cover object-center" width={600} height={600}/>
+            <div className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:grid-rows-2 sm:gap-x-6 lg:gap-8 ">
+                <div className="group aspect-w-2 aspect-h-1 rounded-xl overflow-hidden sm:aspect-w-1 sm:row-span-2 ">
+                    <Image src={"/all-image.jpeg"} alt={"All products image"} className="object-cover object-center " width={600} height={600}/>
                     <div className="bg-gradient-to-b from-transparent to-black opacity-55 sm:absolute sm:inset-0" />
                     <div className="p-6 flex items-end">
                         <Link href="/products/all">
@@ -23,7 +23,7 @@ export function CategoriesSelection(){
                 </div>
                 
                 <div className="group aspect-w-2 aspect-h-1 rounded-lg overflow-hidden sm:relative sm:aspect-none sm:h-full">
-                    <Image src={"/men.jpeg"} alt={"Men products image"} className="object-bottom object-cover sm:absolute sm:inset-0 sm:w-full sm:h-full" width={600} height={600}/>
+                    <Image src={"/men-image.jpeg"} alt={"Men products image"} className="object-bottom object-cover sm:absolute sm:inset-0 sm:w-full sm:h-full" width={600} height={600}/>
                     <div className="bg-gradient-to-b from-transparent to-black opacity-55 sm:absolute sm:inset-0" />
                     <div className="p-6 flex items-end sm:absolute sm:inset-0">
                         <Link href="/products/men">
@@ -34,7 +34,7 @@ export function CategoriesSelection(){
                 </div>
 
                 <div className="group aspect-w-2 aspect-h-1 rounded-lg overflow-hidden sm:relative sm:aspect-none sm:h-full">
-                    <Image src={"/women.jpeg"} alt={"Men products image"} className="object-bottom object-cover sm:absolute sm:inset-0 sm:w-full sm:h-full" width={600} height={600}/>
+                    <Image src={"/women-image.jpg"} alt={"Women products image"} className="object-bottom object-cover sm:absolute sm:inset-0 sm:w-full sm:h-full" width={600} height={600}/>
                     <div className="bg-gradient-to-b from-transparent to-black opacity-55 sm:absolute sm:inset-0" />
                     <div className="p-6 flex items-end sm:absolute sm:inset-0">
                         <Link href="/products/women">

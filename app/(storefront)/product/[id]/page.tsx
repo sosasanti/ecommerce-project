@@ -1,10 +1,11 @@
 import { addItem } from "@/app/actions";
 import { FeaturedProducts } from "@/app/components/storefront/FeaturedProducts";
 import { ImageSlider } from "@/app/components/storefront/ImageSlider";
-import { ShoppingBagButton } from "@/app/components/SubmitButtons";
+import { CheckoutButtonNoLogged, ShoppingBagButton } from "@/app/components/SubmitButtons";
 import prisma from "@/app/lib/db";
-import { StarIcon } from "lucide-react";
-import { notFound } from "next/navigation";
+import { getKindeServerSession, LoginLink } from "@kinde-oss/kinde-auth-nextjs/server";
+import { Check, StarIcon } from "lucide-react";
+import { notFound, redirect } from "next/navigation";
 
 async function getData(productId: string){
     const data = await prisma.product.findUnique({
@@ -32,6 +33,9 @@ export default async function ProductIdRoute({params}:{params:{id : string}}){
     const data = await getData(params.id);
     const addProducttoShoppingCart = addItem.bind(null, data.id);
 
+    const { getUser } = getKindeServerSession();
+    const user = await getUser();
+    
     return(
         <>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start lg:gap-x-24 py-6 ">
@@ -46,10 +50,17 @@ export default async function ProductIdRoute({params}:{params:{id : string}}){
                         <StarIcon className="h-4 w-4 text-yellow-500 fill-yellow-500"/>
                         <StarIcon className="h-4 w-4 text-yellow-500 fill-yellow-500"/>
                     </div>
-                    <p className="text-base text-gray-700 mt-6">{data.description}</p>
-                    <form action={addProducttoShoppingCart}>
-                        <ShoppingBagButton />
-                    </form>
+                    <p className="text-base text-gray-700 mt-6 text-justify">{data.description}</p>
+                    {
+                        user ? (
+                            <form action={addProducttoShoppingCart}>
+                                <ShoppingBagButton />
+                            </form>
+                        ) : (
+                            <CheckoutButtonNoLogged />
+                        )
+                    }
+
 
                 </div>
             </div>

@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useForm } from "@conform-to/react";
-import { Loader2, ShoppingBagIcon } from "lucide-react";
+import { Loader2, LogIn, ShoppingBagIcon } from "lucide-react";
 import { useFormStatus } from "react-dom"
 
 interface buttonProps {
@@ -81,6 +81,17 @@ export function CheckoutButton(){
                     Checkout
                 </Button>
             )}
+        </>
+    )
+}
+
+export function CheckoutButtonNoLogged(){
+
+    return(
+        <>
+            <Button disabled size="lg" className="w-full mt-5" >
+                <LogIn className="mr-2 h-5 w-5"/>Please sign in first
+            </Button>
         </>
     )
 }

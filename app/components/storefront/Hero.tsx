@@ -17,7 +17,7 @@ export async function Hero(){
     const data = await getData();
 
     return (
-        <Carousel>
+        <Carousel className="hidden md:block">
             <CarouselContent>
                 {data.map((item)=>(
                     <CarouselItem key={item.id}>
@@ -25,8 +25,8 @@ export async function Hero(){
                             <Image src={item.imageString} alt="Banner image" fill 
                                 className="object-cover w-full h-full rounded-xl"
                             />
-                            <div className="absolute top-6 left-6 bg-opacity-75 bg-black text-white p-6 rounded-xl shadow-lg transition-transform hover:scale-150 ">
-                                <h1 className="text-xl lg:text-4xl font-bold ">{item.title}</h1>
+                            <div className="absolute top-6 left-6 bg-opacity-75 bg-black text-white p-6 rounded-xl shadow-lg transition-transform hover:scale-110 ">
+                                <h1 className="text-sm lg:text-base font-bold ">{item.title}</h1>
                             </div>
                         </div>
                     </CarouselItem>
