@@ -6,6 +6,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { MoreHorizontal, PlusCircle, UserIcon } from "lucide-react";
 import Link from "next/link";
 import Image from 'next/image';
+import { unstable_noStore as noStore } from 'next/cache';
 
 //que sea un server component simplifica el fetch de datos
 //Prisma Query
@@ -22,6 +23,7 @@ async function getData() {
 
 export default async function ProductsRoute() {
 
+    noStore();
     const data = await getData();
     return (
         <>

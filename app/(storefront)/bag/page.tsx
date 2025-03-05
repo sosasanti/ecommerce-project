@@ -9,9 +9,11 @@ import { checkOut, deleteItem } from "@/app/actions";
 import { CheckoutButton, DeleteItem } from "@/app/components/SubmitButtons";
 import { ShoppingBagIcon  } from "lucide-react";
 import Link from "next/link";
+import { unstable_noStore as noStore } from 'next/cache';
 
 export default async function BagRoute() {
 
+    noStore();
     const { getUser } = getKindeServerSession();
     const user = await getUser();
 

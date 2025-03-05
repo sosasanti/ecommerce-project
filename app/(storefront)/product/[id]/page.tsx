@@ -6,6 +6,7 @@ import prisma from "@/app/lib/db";
 import { getKindeServerSession, LoginLink } from "@kinde-oss/kinde-auth-nextjs/server";
 import { Check, StarIcon } from "lucide-react";
 import { notFound, redirect } from "next/navigation";
+import { unstable_noStore as noStore } from 'next/cache';
 
 async function getData(productId: string){
     const data = await prisma.product.findUnique({
@@ -30,6 +31,7 @@ async function getData(productId: string){
 
 export default async function ProductIdRoute({params}:{params:{id : string}}){
 
+    noStore();
     const data = await getData(params.id);
     const addProducttoShoppingCart = addItem.bind(null, data.id);
 

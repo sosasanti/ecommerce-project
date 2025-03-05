@@ -6,10 +6,11 @@ import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { getKindeServerSession, LogoutLink } from '@kinde-oss/kinde-auth-nextjs/server';
 import { redirect } from 'next/navigation';
+import { unstable_noStore as noStore } from 'next/cache';
 
 export default async function DashboardLayout({ children }: { children : ReactNode}) {
 
-
+    noStore();
     const {getUser} = getKindeServerSession();
     const user = await getUser();
 
